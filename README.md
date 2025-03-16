@@ -20,6 +20,9 @@
 [x] save file
 [x] steal / create ascii hangman graphic
 [ ] read from file, then select a random word that has 5 to 12 characters long
+    [x] read from file
+    [x] create separate file with 5-12 words
+    [ ] select random word from valid words
 [ ] hangman game - guesses and etc
 [ ] save file implementation
 
