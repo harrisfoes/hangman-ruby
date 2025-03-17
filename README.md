@@ -19,10 +19,28 @@
 
 [x] save file
 [x] steal / create ascii hangman graphic
-[ ] read from file, then select a random word that has 5 to 12 characters long
+[x] read from file, then select a random word that has 5 to 12 characters long
     [x] read from file
     [x] create separate file with 5-12 words
-    [ ] select random word from valid words
+    [x] select random word from valid words
 [ ] hangman game - guesses and etc
+    [ ] show the current hangman graphic based on tries allowed
+        [ ] tries start at zero and increment every try
+    [ ] show the letters available for selection
+    [ ] show the secret word
+        [ ] unguessed letters will be blank
+        [ ] guessed letters will be shown
+    [ ] ask for input
+        [ ] allow only valid letters
+    [ ] if word not yet guessed and out of tries, end game -- lose
+    [ ] if word guessed, end game - win
+
 [ ] save file implementation
+    [ ] put an option where player can quit and save
+    [ ] when game starts and save file exists, ask if they want to continue
+    [ ] if they don't want to continue, delete save file:
+    [ ] find the relevant variables to store
+    [ ] find an appropriate structire
+    [ ] write to save file
+    [ ] read to save file
 
