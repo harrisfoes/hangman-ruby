@@ -1,3 +1,4 @@
+ATOZ = "abcdefghijklmnopqrstuvwxyz".freeze
 HANGMAN_PICS = ['
    +---+
        |
@@ -68,19 +69,42 @@ end
 
 #select random word from valid words
 valid_words = []
-tries = 0
+tries = 1
 
-secret_word = get_secret_word(valid_words)
+secret_word = get_secret_word(valid_words).chomp
 
-puts "Secret word is: #{secret_word}"
+available_letters = {}
+ATOZ.chars.each {| letter | available_letters[letter] = false}
 
-
-until tries > HANGMAN_PICS.length do
-  #display secret word
-  puts HANGMAN_PICS[tries]
-  puts "Pick a letter: "
-  letter = gets.chomp
-  p "You entered #{letter}"
-  tries +=1
+#compare secret word with available letters
+def display_letters(secret_word, available_letters)
+  secret_word.chars.map {|letter| available_letters[letter] ?  "#{letter} " : "_ "}.join
 end
 
+game_won = false
+
+until tries >= HANGMAN_PICS.length or game_won do
+
+  puts HANGMAN_PICS[tries]
+  puts "Guess the word:"
+  puts display_letters(secret_word, available_letters)
+  puts "Pick a letter: "
+
+  #TODO: input validation 
+  letter = gets.chomp
+  p "You entered #{letter}" 
+  available_letters[letter] = true
+
+  tries += 1 unless secret_word.include?(letter)
+
+  game_won = secret_word.chars.all? {|letter| available_letters[letter] }
+
+end
+
+if game_won
+  puts "You won!"
+elsif
+  puts "You lost!"
+end
+
+puts "The secret word is #{secret_word}"

@@ -24,16 +24,16 @@
     [x] create separate file with 5-12 words
     [x] select random word from valid words
 [ ] hangman game - guesses and etc
-    [ ] show the current hangman graphic based on tries allowed
-        [ ] tries start at zero and increment every try
+    [x] show the current hangman graphic based on tries allowed
+        [x] tries start at zero and increment every try
     [ ] show the letters available for selection
-    [ ] show the secret word
-        [ ] unguessed letters will be blank
-        [ ] guessed letters will be shown
+    [x] show the secret word
+        [x] unguessed letters will be blank
+        [x] guessed letters will be shown
     [ ] ask for input
         [ ] allow only valid letters
-    [ ] if word not yet guessed and out of tries, end game -- lose
-    [ ] if word guessed, end game - win
+    [x] if word not yet guessed and out of tries, end game -- lose
+    [x] if word guessed, end game - win
 
 [ ] save file implementation
     [ ] put an option where player can quit and save
