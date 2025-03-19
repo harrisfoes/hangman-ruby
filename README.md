@@ -26,12 +26,14 @@
 [ ] hangman game - guesses and etc
     [x] show the current hangman graphic based on tries allowed
         [x] tries start at zero and increment every try
-    [ ] show the letters available for selection
+    [x] show the letters available for selection
     [x] show the secret word
         [x] unguessed letters will be blank
         [x] guessed letters will be shown
     [ ] ask for input
         [ ] allow only valid letters
+        [ ] if not a letter - error
+        [ ] if letter already guessed - error
     [x] if word not yet guessed and out of tries, end game -- lose
     [x] if word guessed, end game - win
 
