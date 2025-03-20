@@ -85,6 +85,17 @@ def show_avail_letters(available_letters)
   letters = available_letters.map { |letter, already_guessed | "#{letter.upcase} " unless already_guessed }.join
 end
 
+def get_valid_character
+  loop do
+    puts "Pick a letter: "
+    input = gets.chomp.strip.downcase
+
+    return input if input.match(/^[a-z]$/i)
+
+    puts "Invalid input! Please enter a single letter (A-Z)."
+  end
+end
+
 game_won = false
 
 until tries >= HANGMAN_PICS.length or game_won do
@@ -93,10 +104,10 @@ until tries >= HANGMAN_PICS.length or game_won do
   puts "Guess the word:"
   puts display_letters(secret_word, available_letters)
   puts "Available letters: #{show_avail_letters(available_letters)}"
-  puts "Pick a letter: "
 
   #TODO: input validation 
-  letter = gets.chomp
+  letter = get_valid_character()
+
   p "You entered #{letter}" 
   available_letters[letter] = true
 
