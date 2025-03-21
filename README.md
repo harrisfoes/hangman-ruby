@@ -30,12 +30,18 @@
     [x] show the secret word
         [x] unguessed letters will be blank
         [x] guessed letters will be shown
-    [ ] ask for input
-        [ ] allow only valid letters
-        [ ] if not a letter - error
-        [ ] if letter already guessed - error
+    [x] ask for input
+        [x] allow only valid letters
+        [x] if not a letter - error
     [x] if word not yet guessed and out of tries, end game -- lose
     [x] if word guessed, end game - win
+
+[ ] refactor to class before doing file implementation
+    why? makes it easier to handle save and load functionality
+    [x] create class
+    [x] file segment
+        [x] on initiate, create word collection
+        [ ] accessible attributes - tbd
 
 [ ] save file implementation
     [ ] put an option where player can quit and save
