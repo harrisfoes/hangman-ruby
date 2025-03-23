@@ -106,6 +106,16 @@ class Hangman
     end
   end
 
+  def declare_result()
+    if @is_game_won
+      puts "You won!"
+    elsif
+      puts "You lost!"
+    end
+
+    puts "The secret word is #{@secret_word}"
+  end
+
   def game_loop()
     until @tries >= HANGMAN_PICS.length or @is_game_won do
         puts HANGMAN_PICS[@tries]
@@ -124,21 +134,9 @@ class Hangman
         @is_game_won = secret_word.chars.all? {|letter| @available_letters[letter] }
     end
 
-    if @is_game_won
-      puts "You won!"
-    elsif
-      puts "You lost!"
-    end
-
-    puts "The secret word is #{@secret_word}"
+    declare_result()
 
   end
 
 end
 
-hm = Hangman.new
-p hm.tries
-p hm.secret_word
-p hm.available_letters
-
-hm.game_loop()
