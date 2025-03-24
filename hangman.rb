@@ -1,7 +1,10 @@
 class Hangman
 
-  attr_accessor :tries, :valid_words, :secret_word, :available_letters, :is_game_won;
+  attr_accessor :tries, :valid_words, :secret_word, :available_letters, :is_game_won, :game_state;
 
+  START = 1
+  WON = 2
+  QUIT = 3
   ATOZ = "abcdefghijklmnopqrstuvwxyz".freeze
   HANGMAN_PICS = ['
      +---+
@@ -47,6 +50,7 @@ class Hangman
     @secret_word = get_secret_word().chomp
     @available_letters = {}
     ATOZ.chars.each {|letter| available_letters[letter] = false}
+    @game_state = START
     @is_game_won = false
     
     #make a file of all valid words
@@ -102,6 +106,14 @@ class Hangman
 
       return input if input.match(/^[a-z]$/i)
 
+      #TODO
+      if input == "quit"
+        @game_state = QUIT
+        return #exit the method entirely when quit is selected
+      end
+
+      # exit loop
+
       puts "Invalid input! Please enter a single letter (A-Z)."
     end
   end
@@ -117,15 +129,27 @@ class Hangman
   end
 
   def game_loop()
+    # if game_file exists
+    #   ask if they would like to continue
+    #   if yes, populate variables and continue game
+
     until @tries >= HANGMAN_PICS.length or @is_game_won do
         puts HANGMAN_PICS[@tries]
         puts "Guess the word:"
         puts display_letters()
         puts "Available letters: #{show_avail_letters()}"
+        puts "If you want to quit, just say so"
 
         #TODO: input validation 
         letter = get_valid_character()
-
+        
+        #if game_status = quit
+        if @game_state == QUIT
+            puts "player asked to quit"
+            # create save file   
+            return
+        end
+        
         p "You entered #{letter}" 
         @available_letters[letter] = true
 
@@ -135,6 +159,8 @@ class Hangman
     end
 
     declare_result()
+    
+    #game is done if save file exists delete it
 
   end
 
