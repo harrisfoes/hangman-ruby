@@ -1,6 +1,8 @@
+require 'json'
+
 class Hangman
 
-  attr_accessor :tries, :valid_words, :secret_word, :available_letters, :is_game_won, :game_state;
+  attr_accessor :tries, :secret_word, :available_letters, :is_game_won, :game_state;
 
   START = 1
   WON = 2
@@ -104,15 +106,12 @@ class Hangman
       puts "Pick a letter: "
       input = gets.chomp.strip.downcase
 
-      return input if input.match(/^[a-z]$/i)
-
-      #TODO
       if input == "quit"
         @game_state = QUIT
         return #exit the method entirely when quit is selected
       end
 
-      # exit loop
+      return input if input.match(/^[a-z]$/i)
 
       puts "Invalid input! Please enter a single letter (A-Z)."
     end
@@ -129,9 +128,26 @@ class Hangman
   end
 
   def game_loop()
-    # if game_file exists
-    #   ask if they would like to continue
-    #   if yes, populate variables and continue game
+    if File.exist?("game_save.json")
+
+      puts "You have an unfinished game, would you like to continue?"
+      response = gets[0].downcase.chomp
+
+      if response == "y"
+        file_content = File.read("game_save.json")
+        data = JSON.parse(file_content)
+
+        @tries = data['tries']
+        @available_letters = data['available_letters']
+        @secret_word = data['secret_word']
+        @is_game_won = false
+
+      else
+        File.delete("game_save.json")
+        puts "Starting a new game..."
+      end
+
+    end
 
     until @tries >= HANGMAN_PICS.length or @is_game_won do
         puts HANGMAN_PICS[@tries]
@@ -140,27 +156,36 @@ class Hangman
         puts "Available letters: #{show_avail_letters()}"
         puts "If you want to quit, just say so"
 
-        #TODO: input validation 
         letter = get_valid_character()
         
-        #if game_status = quit
         if @game_state == QUIT
-            puts "player asked to quit"
-            # create save file   
+            puts "quitting game"
+
+            data = {
+              tries: @tries,
+              available_letters: @available_letters,
+              secret_word: @secret_word,
+            }
+
+            File.open("game_save.json", "w") { |f| f.write(data.to_json) }
+            puts "game saved"
             return
         end
         
         p "You entered #{letter}" 
         @available_letters[letter] = true
 
-        @tries += 1 unless secret_word.include?(letter)
+        @tries += 1 unless @secret_word.include?(letter)
 
-        @is_game_won = secret_word.chars.all? {|letter| @available_letters[letter] }
+        @is_game_won = @secret_word.chars.all? {|letter| @available_letters[letter] }
     end
 
     declare_result()
     
-    #game is done if save file exists delete it
+    #game is done, if save file exists delete it
+    if File.exist?("game_save.json")
+      File.delete("game_save.json")
+    end
 
   end
 

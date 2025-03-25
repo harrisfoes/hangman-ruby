@@ -23,7 +23,7 @@
     [x] read from file
     [x] create separate file with 5-12 words
     [x] select random word from valid words
-[ ] hangman game - guesses and etc
+[x] hangman game - guesses and etc
     [x] show the current hangman graphic based on tries allowed
         [x] tries start at zero and increment every try
     [x] show the letters available for selection
@@ -36,19 +36,22 @@
     [x] if word not yet guessed and out of tries, end game -- lose
     [x] if word guessed, end game - win
 
-[ ] refactor to class before doing file implementation
+[x] refactor to class before doing file implementation
     why? makes it easier to handle save and load functionality
     [x] create class
     [x] file segment
         [x] on initiate, create word collection
-        [ ] accessible attributes - tbd
+        [x] accessible attributes - tbd
 
 [ ] save file implementation
-    [ ] put an option where player can quit and save
+    [x] put an option where player can quit and save
+        [x] when player inputs 'quit' during the word input part, save to a file and quit
     [ ] when game starts and save file exists, ask if they want to continue
-    [ ] if they don't want to continue, delete save file:
-    [ ] find the relevant variables to store
-    [ ] find an appropriate structire
-    [ ] write to save file
-    [ ] read to save file
+        [ ] if continue populate from file and resume operation
+        [ ] if they don't want to continue, delete save file:
+    misc
+        [x] find the relevant variables to store
+        [x] find an appropriate structire
+        [x] write to save file
+        [ ] read to save file
 
