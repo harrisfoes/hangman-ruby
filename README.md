@@ -1,7 +1,6 @@
 # hangman-ruby
 
 
-```sh
 Download the google-10000-english-no-swears.txt dictionary file from the first20hours GitHub repository google-10000-english.
 
 When a new game is started, your script should load in the dictionary and randomly select a word between 5 and 12 characters long for the secret word.
@@ -13,7 +12,6 @@ Every turn, allow the player to make a guess of a letter. It should be case inse
 Now implement the functionality where, at the start of any turn, instead of making a guess the player should also have the option to save the game. Remember what you learned about serializing objects.
 
 When the program first loads, add in an option that allows you to open one of your saved games, which should jump you exactly back to where you were when you saved. Play on!
-```
 
 
 
